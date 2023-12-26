@@ -698,3 +698,28 @@ create table gen_table_column (
   update_time       datetime                                   comment '更新时间',
   primary key (column_id)
 ) engine=innodb auto_increment=1 comment = '代码生成业务表字段';
+
+-- ----------------------------
+-- 20、订单表
+-- ----------------------------
+DROP TABLE
+    IF
+    EXISTS clean_order;
+CREATE TABLE clean_order (
+                             order_id BIGINT ( 20 ) NOT NULL auto_increment COMMENT '订单编号',
+                             `customer_id` BIGINT ( 10 ) NOT NULL COMMENT '下单用户编号',
+                             `product_id` BIGINT ( 15 ) NOT NULL COMMENT '产品编号',
+                             `product_name` VARCHAR ( 30 ) NOT NULL COMMENT '产品名称',
+                             `product_price` DECIMAL ( 10, 2 ) NOT NULL COMMENT '产品价格',
+                             `quantity` INT ( 11 ) NOT NULL COMMENT '产品数量',
+                             `total_price` DECIMAL ( 10, 2 ) NOT NULL COMMENT '总价格',
+                             `order_time` datetime NOT NULL COMMENT '下单时间',
+                             `delivery_time` datetime NOT NULL COMMENT '发货时间',
+                             `address` VARCHAR ( 100 ) NOT NULL COMMENT '家庭住址',
+                             create_by VARCHAR ( 64 ) DEFAULT '' COMMENT '创建者',
+                             create_time datetime COMMENT '创建时间',
+                             update_by VARCHAR ( 64 ) DEFAULT '' COMMENT '更新者',
+                             update_time datetime COMMENT '更新时间',
+                             remark VARCHAR ( 500 ) DEFAULT NULL COMMENT '备注',
+                             PRIMARY KEY ( order_id )
+) ENGINE = INNODB auto_increment = 1 COMMENT = '订单信息表';
